@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>TensorFlow Lite con TF.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite"></script>
+</head>
+<body>
+  <h2>Modelo TensorFlow Lite</h2>
+  <div id="status">Cargando el modelo...</div>
+
+  <script>
+    async function cargarModelo() {
+      try {
+        // Asegúrate de que la ruta del archivo .tflite sea correcta
+        const model = await tf.tflite.loadTFLiteModel('waste.tflite');
+        document.getElementById('status').innerText = "Modelo cargado correctamente";
+
+        // Mostrar que el modelo está cargado
+        console.log('Modelo cargado:', model);
+
+        // Aquí puedes realizar predicciones o trabajar con el modelo
+      } catch (error) {
+        console.error('Error al cargar el modelo:', error);
+        document.getElementById('status').innerText = "Error al cargar el modelo";
+      }
+    }
+
+    cargarModelo();
+  </script>
+  
+</body>
+</html>
